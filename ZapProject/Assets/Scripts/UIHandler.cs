@@ -15,6 +15,9 @@ public class UIHandler : MonoBehaviour
     private Text BestScoreText;
 
     [SerializeField]
+    private Text diamondText;
+
+    [SerializeField]
     private GameObject gameOverScreenObject;
 
     [SerializeField]
@@ -25,6 +28,15 @@ public class UIHandler : MonoBehaviour
 
     [SerializeField]
     private GameObject menuObject;
+
+    [SerializeField]
+    private Image soundImage;
+
+    [SerializeField]
+    private Sprite soundOnSprite;
+
+    [SerializeField]
+    private Sprite soundOffSprite;
 
     public void setRecord(int newRecord)
     {
@@ -48,4 +60,18 @@ public class UIHandler : MonoBehaviour
         gamesPlayedTextMenu.text = gamesPlayed.ToString();
         bestScoreTextMenu.text = bestScore.ToString();
     }
+
+    public void setDiamond(int diamond){
+        diamondText.text = diamond.ToString();
+    }
+
+    public void setSoundOnOffImage(bool on){
+        if(on){
+            soundImage.sprite = soundOnSprite;
+        }else{
+            soundImage.sprite = soundOffSprite;
+        }
+        
+    }
+
 }

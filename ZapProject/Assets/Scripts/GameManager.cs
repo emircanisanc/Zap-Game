@@ -13,9 +13,22 @@ public class GameManager : MonoBehaviour
 
     private bool gameOver;
 
+    private float sound;
+
     void Awake()
     {
         uIHandler.setMenuInfos(PlayerPrefs.GetInt("gamesPlayed", 0), PlayerPrefs.GetInt("bestScore", 0));
+        sound = PlayerPrefs.GetFloat("soundVolume", 1);
+        AudioListener.volume = sound;
+        refreshSoundImage();
+    }
+
+    private void refreshSoundImage(){
+        if(sound == 1){
+            uIHandler.setSoundOnOffImage(true);
+        }else{
+            uIHandler.setSoundOnOffImage(false);
+        }
     }
 
     public void startGame()
@@ -46,4 +59,18 @@ public class GameManager : MonoBehaviour
         return gameOver;
     }
 
+    public void toggleSound(){
+        if(sound == 1){
+            sound = 0;
+            PlayerPrefs.SetFloat("soundVolume", 0);
+            AudioListener.volume = sound;
+            refreshSoundImage();
+        }else{
+            sound = 1;
+            PlayerPrefs.SetFloat("soundVolume", 1);
+            AudioListener.volume = sound;
+            refreshSoundImage();
+        }
+        GUI.FocusControl(null);
+    }
 }

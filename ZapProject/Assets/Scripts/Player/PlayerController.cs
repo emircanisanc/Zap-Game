@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private BallMovement playerBall;
+
+    private bool isStarted;
+
+    [SerializeField]
+    private AudioClip onBallMovementClip;
 
     void Update()
     {
@@ -13,16 +19,29 @@ public class PlayerController : MonoBehaviour
         {
             if(playerBall)
             {
-                if(playerBall.enabled)
-                playerBall.toggleDirection();
-                else
-                FindObjectOfType<GameManager>().startGame();
+                if(isStarted && playerBall.enabled){
+                    toggleBallDirection();
+                }else{
+                    isStarted = true;
+                    FindObjectOfType<GameManager>().startGame();
+                }
             }
         }
     }
 
+    private void toggleBallDirection(){
+        playerBall.toggleDirection();
+        AudioSource.PlayClipAtPoint(onBallMovementClip, transform.position);
+    }
+
     public bool isTouched()
-    {
-        return Input.GetKeyDown(KeyCode.Space) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began);
+    {   
+        if(Input.GetKeyDown(KeyCode.Space)){
+            return true;
+        }else if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began){
+            return !(EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId));
+        }else{
+            return false;
+        }
     }
 }

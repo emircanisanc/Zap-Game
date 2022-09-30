@@ -37,7 +37,7 @@ public class PlatformPool : MonoBehaviour
         DiamondBehaviour lastDiamond;
         for(int index = 1; index < maxDiamondCount; index++)
         {
-            lastDiamond = Instantiate(diamondPrefab, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+            lastDiamond = Instantiate(diamondPrefab, new Vector3(0, 0, 0), diamondPrefab.transform.rotation);
             lastDiamond.setPlatformPool(this);
             diamonds.Enqueue(lastDiamond);
         }

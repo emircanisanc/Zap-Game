@@ -9,6 +9,9 @@ public class DiamondBehaviour : MonoBehaviour
 
     private MeshRenderer meshRenderer;
 
+    [SerializeField]
+    private AudioClip collectedAudioClip;
+
     private Platform parentPlatform;
 
     void Awake()
@@ -20,6 +23,8 @@ public class DiamondBehaviour : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            AudioSource.PlayClipAtPoint(collectedAudioClip, transform.position);
+            other.GetComponent<PlayerManager>().addDiamond();
             destroyDiamond();
         }
             
