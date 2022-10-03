@@ -4378,6 +4378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 2029787037}
   uIHandler: {fileID: 1047680768}
+  platformColorController: {fileID: 1129932268}
 --- !u!4 &1047680767
 Transform:
   m_ObjectHideFlags: 0

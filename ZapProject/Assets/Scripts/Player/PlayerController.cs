@@ -30,8 +30,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void toggleBallDirection(){
-        playerBall.toggleDirection();
         AudioSource.PlayClipAtPoint(onBallMovementClip, transform.position);
+        playerBall.toggleDirection();
     }
 
     public bool isTouched()

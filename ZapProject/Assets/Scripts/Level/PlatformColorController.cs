@@ -21,12 +21,6 @@ public class PlatformColorController : MonoBehaviour
 
     private float currentTime;
 
-    void Update()
-    {
-        setColorChangeTime();
-        setMaterialSmoothColorChange();
-    }
-
     private void setColorChangeTime()
     {
         if(currentTime <= 0)
@@ -57,5 +51,21 @@ public class PlatformColorController : MonoBehaviour
     void OnDestroy()
     {
         material.color = colors[0];
+    }
+
+
+
+
+
+    public void startChangingColor(){
+        StartCoroutine(changeColorRoutine());
+    }
+
+    IEnumerator changeColorRoutine(){
+        while(true){
+            setColorChangeTime();
+            setMaterialSmoothColorChange();
+            yield return new WaitForSeconds(0);
+        }
     }
 }

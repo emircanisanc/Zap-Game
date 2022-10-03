@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,9 +12,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private UIHandler uIHandler;
 
+    [SerializeField]
+    private PlatformColorController platformColorController;
+
     private bool gameOver;
 
     private float sound;
+
 
     void Awake()
     {
@@ -21,6 +26,7 @@ public class GameManager : MonoBehaviour
         sound = PlayerPrefs.GetFloat("soundVolume", 1);
         AudioListener.volume = sound;
         refreshSoundImage();
+        Application.targetFrameRate = 60;
     }
 
     private void refreshSoundImage(){
@@ -36,6 +42,7 @@ public class GameManager : MonoBehaviour
         ball.enabled = true;
         PlayerPrefs.SetInt("gamesPlayed", PlayerPrefs.GetInt("gamesPlayed", 0) + 1);
         uIHandler.closeMenuScreen();
+        platformColorController.startChangingColor();
     }
 
     public void endGame(int currentScore)
