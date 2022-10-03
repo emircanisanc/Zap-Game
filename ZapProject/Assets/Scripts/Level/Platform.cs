@@ -72,16 +72,16 @@ public class Platform : MonoBehaviour
     private IEnumerator fallAnim(float ballSpeed)
     {
         yield return new WaitForSeconds(delayBeforeFallMultiplier / ballSpeed);
-        if(diamond != null)
-        {
-            diamond.destroyDiamond();
-            diamond = null;
-        }
         rg.isKinematic = false;
         rg.useGravity = true;
         yield return new WaitForSeconds(delayBeforeTeleportMultiplier / ballSpeed);
         rg.isKinematic = true;
         rg.useGravity = false;
+        if(diamond != null)
+        {
+            diamond.destroyDiamond();
+            diamond = null;
+        }
         platformPool.movePlatformToNext(this);
         isFalling = false;
         

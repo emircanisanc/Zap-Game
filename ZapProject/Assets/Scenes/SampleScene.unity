@@ -4752,7 +4752,7 @@ MonoBehaviour:
   directionLimiter: 3
   currentDirection: 1
   maxDiamondCount: 20
-  diamondChancePercent: 25
+  diamondChancePercent: 30
   diamondPrefab: {fileID: 3983134943598315218, guid: e697f45696286224ba86ef42abeea0ba,
     type: 3}
   platformPrefab: {fileID: 1668917379730665821, guid: 06a7e4075006aca4bb5277116c90c64e,

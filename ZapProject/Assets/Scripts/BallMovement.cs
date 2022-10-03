@@ -39,7 +39,7 @@ public class BallMovement : MonoBehaviour
                 temp = 0;
             }
             rg.velocity = new Vector3(movement.x, temp, movement.z);
-            speed += Time.deltaTime / 90;
+            speed += Time.deltaTime / 100;
         }
         
     }

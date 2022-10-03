@@ -38,6 +38,7 @@ public class DiamondBehaviour : MonoBehaviour
         
         if(parentPlatform != null)
         {
+            transform.parent = null;
             meshRenderer.enabled = false;
             parentPlatform.setDiamond(null);
             parentPlatform = null;
@@ -56,5 +57,6 @@ public class DiamondBehaviour : MonoBehaviour
         parentPlatform = platform;
         meshRenderer.enabled = true;
         transform.position = platform.getDiamondSocket();
+        transform.parent = platform.transform;
     }
 }
