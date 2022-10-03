@@ -181,7 +181,10 @@ MonoBehaviour:
   leftTransform: {fileID: 8693222217683628742}
   rg: {fileID: 2097920970261396024}
   delayBeforeTeleportMultiplier: 3.5
-  delayBeforeFallMultiplier: 2.5
+  delayBeforeFallMultiplier: 2
+  diamondss:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!54 &2097920970261396024
 Rigidbody:
   m_ObjectHideFlags: 0

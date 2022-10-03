@@ -113,3 +113,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformPool: {fileID: 0}
   collectedAudioClip: {fileID: 8300000, guid: 4cecec6004a9bba46904e07c16ea6f7f, type: 3}
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 1

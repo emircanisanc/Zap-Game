@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private PlatformColorController platformColorController;
 
     private bool gameOver;
+    private bool gameStarted;
 
     private float sound;
 
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     public void startGame()
     {
+        gameStarted = true;
         ball.enabled = true;
         PlayerPrefs.SetInt("gamesPlayed", PlayerPrefs.GetInt("gamesPlayed", 0) + 1);
         uIHandler.closeMenuScreen();
@@ -64,6 +66,10 @@ public class GameManager : MonoBehaviour
     public bool isGameOver()
     {
         return gameOver;
+    }
+
+    public bool isGameStarted(){
+        return gameStarted;
     }
 
     public void toggleSound(){

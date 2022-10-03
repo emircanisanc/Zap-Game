@@ -28,7 +28,8 @@ public class Platform : MonoBehaviour
 
     private bool isFalling;
 
-    private int nearPlatformCount;
+    public LayerMask diamondss;
+
 
     public Vector3 getPositionAt(int right)
     {
@@ -71,7 +72,7 @@ public class Platform : MonoBehaviour
     private IEnumerator fallAnim(float ballSpeed)
     {
         yield return new WaitForSeconds(delayBeforeFallMultiplier / ballSpeed);
-        if(diamond)
+        if(diamond != null)
         {
             diamond.destroyDiamond();
             diamond = null;

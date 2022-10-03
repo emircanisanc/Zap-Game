@@ -14,6 +14,9 @@ public class DiamondBehaviour : MonoBehaviour
 
     private Platform parentPlatform;
 
+    [SerializeField]
+    private LayerMask groundLayerMask;
+
     void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
@@ -21,7 +24,7 @@ public class DiamondBehaviour : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player" && parentPlatform != null)
         {
             AudioSource.PlayClipAtPoint(collectedAudioClip, transform.position);
             other.GetComponent<PlayerManager>().addDiamond();
@@ -32,13 +35,15 @@ public class DiamondBehaviour : MonoBehaviour
 
     public void destroyDiamond()
     {
-        meshRenderer.enabled = false;
-        if(parentPlatform)
+        
+        if(parentPlatform != null)
         {
+            meshRenderer.enabled = false;
             parentPlatform.setDiamond(null);
             parentPlatform = null;
+            platformPool.addDiamondToQueue(this);
         }
-        platformPool.addDiamondToQueue(this);
+        
     }
 
     public void setPlatformPool(PlatformPool platformPool)

@@ -39,7 +39,7 @@ public class BallMovement : MonoBehaviour
                 temp = 0;
             }
             rg.velocity = new Vector3(movement.x, temp, movement.z);
-            speed += 0.0002f;
+            speed += Time.deltaTime / 90;
         }
         
     }
@@ -60,18 +60,23 @@ public class BallMovement : MonoBehaviour
         }
     }
 
+    public float getSpeed(){
+        return speed;
+    }
+
     public void disableMovement()
     {
         canMove = false;
         rg.velocity = new Vector3(rg.velocity.x, -speed*3/2, rg.velocity.z);
     }    
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerExit(Collider other)
     {
         if(other.tag == "Ground")
         {
             other.GetComponent<Platform>().fall(speed);
         }
     }
+
 
 }
