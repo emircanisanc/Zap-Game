@@ -15,6 +15,8 @@ public class BallMovement : MonoBehaviour
 
     private bool canMove;
 
+    private Vector3 rotateVelocity;
+
     void Awake()
     {
         rg = GetComponent<Rigidbody>();
@@ -38,6 +40,7 @@ public class BallMovement : MonoBehaviour
             {
                 temp = 0;
             }
+            rg.angularVelocity = rotateVelocity;
             rg.velocity = new Vector3(movement.x, temp, movement.z);
             speed += Time.deltaTime / 100;
         }
@@ -47,6 +50,7 @@ public class BallMovement : MonoBehaviour
     public void startMovement()
     {
         movement = new Vector3(-speed, 0 ,0);
+        rotateVelocity = (new Vector3(movement.z, 0, -movement.x) * (2 * Mathf.PI * transform.localScale.magnitude) * 10);
     }
 
     public void toggleDirection()
@@ -58,6 +62,7 @@ public class BallMovement : MonoBehaviour
         {
             movement = new Vector3(-speed, 0 ,0);
         }
+        rotateVelocity = (new Vector3(movement.z, 0, -movement.x) * (2 * Mathf.PI * transform.localScale.magnitude) * 10);
     }
 
     public float getSpeed(){

@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
 
     private float sound;
 
+    [SerializeField]
+    private int frameRate = 60;
+
 
     void Awake()
     {
@@ -27,7 +30,7 @@ public class GameManager : MonoBehaviour
         sound = PlayerPrefs.GetFloat("soundVolume", 1);
         AudioListener.volume = sound;
         refreshSoundImage();
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = frameRate;
     }
 
     private void refreshSoundImage(){
